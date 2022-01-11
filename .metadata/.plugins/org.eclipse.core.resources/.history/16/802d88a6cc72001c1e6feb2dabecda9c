@@ -1,0 +1,30 @@
+let index = {
+		init: function(){
+			$("#btn_board_save").on("click", ()=>{  //for 'this' binding
+				this.save();
+			});
+		},
+
+		save: function(){
+			//alert("save");
+			let data = {
+				title : $("#title").val(),
+				content : $("#content").val(),
+				userId : $("#hidden_username").val()
+			}
+			$.ajax({
+				type:"POST",
+				url : "/blog/api/board",
+				data:JSON.stringify(data), //javascript -> java, html body data
+				contentType:"application/json;charset=utf-8",
+				dataType:"json"  //request -> JSON
+			}).done(function(res){
+				alert("작성이 완료되었습니다!");
+				//console.log(res);
+				location.href = "/blog";
+			}).fail(function(err){
+				alert(JSON.stringify(err));
+			});
+		}
+}
+index.init();

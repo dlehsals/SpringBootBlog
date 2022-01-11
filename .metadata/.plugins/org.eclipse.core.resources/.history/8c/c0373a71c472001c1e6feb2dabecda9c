@@ -1,0 +1,32 @@
+package com.berry.blog.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.berry.blog.model.RoleType;
+import com.berry.blog.model.User;
+import com.berry.blog.repository.UserRepository;
+
+//스프링이 컴포넌트 스캔을 통해서 bean객체로 등록해줌(IoC)
+@Service
+public class BoardService {
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	/*
+	 * @Autowired private BCryptPasswordEncoder encoder;
+	 */
+	
+	@Transactional  
+	public void 회원가입(User user) {
+		userRepository.save(user);
+	}
+	
+	@Transactional(readOnly = true)
+	public User 로그인(User user) {
+		return userRepository.findByUsernameAndUserpassword(user.getUsername(), user.getUserpassword());
+	}
+}

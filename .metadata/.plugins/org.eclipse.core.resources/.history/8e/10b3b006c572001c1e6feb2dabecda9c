@@ -1,0 +1,24 @@
+package com.berry.blog.controller.api;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.berry.blog.dto.ResDTO;
+import com.berry.blog.model.Board;
+import com.berry.blog.model.RoleType;
+
+@RestController
+public class BoardApiController {
+	
+	
+	
+	@PostMapping("/api/board")
+	public ResDTO<Integer> save(@RequestBody Board board) {
+		System.out.println("BoardApiController 글작성");
+		return new ResDTO<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	
+}
