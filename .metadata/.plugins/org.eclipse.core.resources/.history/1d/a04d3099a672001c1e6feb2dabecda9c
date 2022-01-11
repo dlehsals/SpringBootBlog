@@ -1,0 +1,28 @@
+<!-- header start -->
+<%@include file="../layout/header.jsp" %>
+<!-- header end -->
+
+<!-- content start-->
+<div class="container">
+	<form>
+		<div class="form-group">
+			<label for="username">User name:</label>
+			<input type="text" name="username"class="form-control" placeholder="Enter User name" id="username">
+		</div>
+
+		<div class="form-group">
+			<label for="password">Password:</label> 
+			<input type="password" name="userpassword"class="form-control" placeholder="Enter password" id="password">
+		</div>
+	</form>
+	<button id="btn_login" class="btn btn-primary">Login</button>
+</div>
+
+<!-- content end -->
+<!-- footer start -->
+<%@include file="/js/user.js" %>
+<%@include file="../layout/footer.jsp"%>
+<!-- footer end -->
+
+
+

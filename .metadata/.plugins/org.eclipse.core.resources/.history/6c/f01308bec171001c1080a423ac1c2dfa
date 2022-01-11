@@ -1,0 +1,5 @@
+package com.berry.blog.service;
+
+public class UserService {
+
+}

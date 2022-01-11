@@ -1,0 +1,20 @@
+package com.berry.blog.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.berry.blog.model.User;
+
+//DAO
+//자동 Bean 등록
+public interface UserRepository extends JpaRepository<User, Integer> {
+	//SELECT * FROM user WHERE username = 1?
+	Optional<User> finidByUsername(String name);
+}
+
+
+//기본적인 CRUD는 JpaRepository에서 지원해준다.'
+	//JPA Naming 쿼리
+	//SELECT * FROM USER WHERE username = ? and userpassword = ?
+	//User findByUsernameAndUserpassword(String username, String password);

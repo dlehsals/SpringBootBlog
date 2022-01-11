@@ -1,0 +1,9 @@
+package com.berry.blog.service;
+
+import org.springframework.stereotype.Service;
+
+//스프링이 컴포넌트 스캔을 통해서 bean객체로 등록해줌(IoC)
+@Service
+public class UserService {
+	
+}

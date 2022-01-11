@@ -1,0 +1,9 @@
+package com.berry.blog.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.berry.blog.model.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+	//기본적인 CRUD는 JpaRepository에서 지원해준다.
+}

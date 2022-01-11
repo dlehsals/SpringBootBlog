@@ -1,0 +1,7 @@
+package com.berry.blog.config.auth;
+
+import com.berry.blog.model.User;
+
+public class PrincipalDetail {
+	private User user; //컴포지션
+}

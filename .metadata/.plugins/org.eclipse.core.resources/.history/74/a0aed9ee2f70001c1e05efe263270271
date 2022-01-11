@@ -1,0 +1,5 @@
+package com.berry.blog.test;
+
+public class HttpControllerTest {
+
+}

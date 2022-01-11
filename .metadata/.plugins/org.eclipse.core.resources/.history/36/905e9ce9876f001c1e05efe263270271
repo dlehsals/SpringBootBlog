@@ -1,0 +1,10 @@
+package com.berry.blog.test;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class BlogControllerTest {
+	public String Hello() {
+		return "spring boot";
+	}
+}

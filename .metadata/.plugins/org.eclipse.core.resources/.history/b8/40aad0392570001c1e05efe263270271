@@ -1,0 +1,13 @@
+package com.berry.blog.test;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class BlogControllerTest {
+	
+	@GetMapping("/test/hello")
+	public String Hello() {
+		return "<h1>spring boot</h1>";
+	}
+}

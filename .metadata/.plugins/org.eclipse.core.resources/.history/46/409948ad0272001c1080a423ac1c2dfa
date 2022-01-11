@@ -1,0 +1,5 @@
+package com.berry.blog.config.auth;
+
+public class PrincipalDetail {
+
+}

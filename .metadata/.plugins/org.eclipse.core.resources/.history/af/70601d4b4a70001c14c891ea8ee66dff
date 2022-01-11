@@ -1,0 +1,57 @@
+package com.berry.blog.model;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+public class Board {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(nullable = false, length = 100)
+	private String title;
+	
+	@Lob  //섬머노트 라이브러리 <html>태그가 섞여서 들어간다
+	private String content;
+	
+	@ColumnDefault("0")  //조회수
+	private int count;
+	
+	@CreationTimestamp
+	private Timestamp createDate;
+
+	@ManyToOne(fetch = FetchType.EAGER)  //Board = Many, User = One - 한명의 유저는 여러개의 게시글을 쓸 수 있다!
+	@JoinColumn(name="userId")
+	private User user;   //DB는 Object를 저장할 수 없다. 자바는 저장가능. FK역할
+	
+	//mappedBy가 적혀있으면 FK가 아니다. DB에 컬럼생성 X Reply클래스에 있는 Board객체의 이름이다.
+	@OneToMany(mappedBy = "board", fetch=FetchType.LAZY) //One = Board, Many = Reply
+	private List<Reply> reply;  //여러 건의 댓글을 저장하기 위함
+	
+}

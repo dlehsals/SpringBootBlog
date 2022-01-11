@@ -1,0 +1,13 @@
+package com.berry.blog.test;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class Member {
+	private int id;
+	private String username;
+	private String userpassword;
+	private String email;
+}

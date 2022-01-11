@@ -1,0 +1,5 @@
+package com.berry.blog.dto;
+
+public class ResDTO {
+
+}

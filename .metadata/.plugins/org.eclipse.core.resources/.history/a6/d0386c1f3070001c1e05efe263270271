@@ -1,0 +1,29 @@
+package com.berry.blog.test;
+
+import org.springframework.web.bind.annotation.RestController;
+
+//사용자의 요청 -> 응답(HTML)
+//Controller
+
+//사용자의 요청 -> 응답(Data)
+//RestController
+@RestController
+public class HttpControllerTest {
+	
+	
+	public String getTest() {
+		return "get 요청";
+	}
+	
+	public String postTest() {
+		return "post 요청";
+	}
+	
+	public String putTest() {
+		return "put 요청";
+	}
+	
+	public String deleteTest() {
+		return "delete 요청";
+	}
+}
