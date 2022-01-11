@@ -1,0 +1,33 @@
+package com.berry.blog.controller;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.berry.blog.service.BoardService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
+
+
+@Controller
+public class BoardController {
+	
+	@Autowired
+	private BoardService boardService;
+	
+	@GetMapping({"", "/"})
+	public String index(Model model, @PageableDefault(size = 3, sort = "id", direction = )Pageable pageable) {
+		model.addAttribute("boards", boardService.글목록());
+		return "index";
+	}
+	
+	@GetMapping("/board/saveForm")
+	public String saveForm() {
+		return "board/saveForm";
+	}
+}

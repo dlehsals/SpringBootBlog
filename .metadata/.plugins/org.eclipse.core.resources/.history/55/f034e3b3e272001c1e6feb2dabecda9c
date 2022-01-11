@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- header start -->
+<%@include file="../layout/header.jsp"%>
+<!-- header end -->
+
+<!-- content start-->
+<div class="container">
+	
+	<div class="form-group">
+		<h3>${board.title}</h3>
+	</div>
+	<hr />
+	<div class="form-group">
+		<div>${board.content}</div>
+	</div>
+	<hr />
+	<br/>
+	<br/>
+	<button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
+	<button class="btn btn-warning">수정</button>
+	<button class="btn btn-danger">삭제</button>
+	
+</div>
+
+
+</div>
+<!-- content end -->
+
+<!-- footer start -->
+
+<script src="/blog/js/board.js"></script>
+<%@include file="../layout/footer.jsp"%>
+<!-- footer end -->
+
+
+

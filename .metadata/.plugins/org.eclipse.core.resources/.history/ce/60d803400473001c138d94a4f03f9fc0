@@ -1,0 +1,70 @@
+let index = {
+		init: function(){
+			$("#btn_board_save").on("click", ()=>{  //for 'this' binding
+				this.save();
+			});
+			$("#btn_delete").on("click", ()=>{  //for 'this' binding
+				this.deleteById();
+			});
+			$("#btn_update").on("click", ()=>{  //for 'this' binding
+				this.update();
+			});
+		},
+
+		save: function(){
+			//alert("save");
+			let data = {
+				title : $("#title").val(),
+				content : $("#content").val(),
+				userId : $("#hidden_userId").val()
+			}
+			$.ajax({
+				type:"POST",
+				url : "/blog/api/board",
+				data:JSON.stringify(data), //javascript -> java, html body data
+				contentType:"application/json;charset=utf-8",
+				dataType:"json"  //request -> JSON
+			}).done(function(res){
+				alert("작성이 완료되었습니다!");
+				//console.log(res);
+				location.href = "/blog";
+			}).fail(function(err){
+				alert(JSON.stringify(err));
+			});
+		},
+		deleteById: function(){
+			let id= $("#id").text();
+			$.ajax({
+				type:"DELETE",
+				url : "/blog/api/board/"+id,
+				dataType:"json"  //request -> JSON
+			}).done(function(res){
+				alert("삭제가 완료되었습니다!");
+				//console.log(res);
+				location.href = "/blog";
+			}).fail(function(err){
+				alert(JSON.stringify(err));
+			});
+		},
+		update: function(){
+			let id = $("#id").val();
+			let data = {
+				title : $("#title").val(),
+				content : $("#content").val(),
+			}
+			$.ajax({
+				type:"POST",
+				url : "/blog/api/board/"+id,
+				data:JSON.stringify(data), //javascript -> java, html body data
+				contentType:"application/json;charset=utf-8",
+				dataType:"json"  //request -> JSON
+			}).done(function(res){
+				alert("수정이 완료되었습니다!");
+				//console.log(res);
+				location.href = "/blog";
+			}).fail(function(err){
+				alert(JSON.stringify(err));
+			});
+		}
+}
+index.init();

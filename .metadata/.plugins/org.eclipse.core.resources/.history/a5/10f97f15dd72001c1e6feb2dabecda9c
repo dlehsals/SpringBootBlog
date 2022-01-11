@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- header start -->
+<%@include file="layout/header.jsp" %>
+<!-- header end -->
+
+<!-- content start-->
+	<div class="container">
+	<c:forEach var="board" items="${boards}">
+		<div class="card m-2" >
+			<div class="card-body">
+				<h4 class="card-title">${board.title}</h4>
+				<p class="card-text">${board.content}</p>
+				<a href="#" class="btn btn-primary">DETAIL</a>
+			</div>
+		</div>
+		</c:forEach>
+	</div>
+	
+	<!-- content end -->
+
+	<!-- footer start -->
+	<%@include file="layout/footer.jsp" %>
+	<!-- footer end -->
+
+
+
