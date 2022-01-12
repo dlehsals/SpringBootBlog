@@ -1,0 +1,97 @@
+let index = {
+		init: function(){
+			$("#btn_save").on("click", ()=>{  //for 'this' binding
+				this.save();
+			});
+			$("#btn_login").on("click", ()=>{  //for 'this' binding
+				this.login();
+			});
+			$("#btn_logout").on("click", ()=>{  //for 'this' binding
+				this.logout();
+			});
+			$("#btn_update").on("click", ()=>{  //for 'this' binding
+				this.update();
+			});
+		},
+
+		save: function(){
+			//alert("save");
+			let data = {
+				username : $("#username").val(),
+				userpassword : $("#password").val(),
+				email : $("#email").val()
+			}
+			$.ajax({
+				type:"POST",
+				url : "/blog/api/user",
+				data:JSON.stringify(data), //javascript -> java, html body data
+				contentType:"application/json;charset=utf-8",
+				dataType:"json"  //request -> JSON
+			}).done(function(res){
+				alert("회원가입이 완료되었습니다!");
+				//console.log(res);
+				location.href = "/blog";
+			}).fail(function(err){
+				alert(JSON.stringify(err));
+			});
+		},
+		login: function(){
+			//alert("save");
+			let data = {
+				username : $("#username").val(),
+				userpassword : $("#password").val(),
+			}
+			$.ajax({
+				type:"POST",
+				url : "/blog/api/user/login",
+				data:JSON.stringify(data), //javascript -> java, html body data
+				contentType:"application/json;charset=utf-8",
+				dataType:"json"  //request -> JSON
+			}).done(function(res){
+				alert("로그인이 완료되었습니다!");
+				//console.log(res);
+				location.href = "/blog";
+			}).fail(function(err){
+				alert(JSON.stringify(err));
+			});
+		},
+		logout: function(){
+			let data = {
+					username : $("#hidden_username").val()
+			}
+			$.ajax({
+				type:"GET",
+				url : "/blog/user/logout",
+				data:JSON.stringify(data), //javascript -> java, html body data
+				contentType:"application/json;charset=utf-8",
+				dataType:"json"  //request -> JSON
+			}).done(function(res){
+				alert("로그아웃이 완료되었습니다!");
+				//console.log(res);
+			}).fail(function(err){
+				alert(JSON.stringify(err));
+			});
+		},
+		update: function(){
+			//alert("save");
+			let data = {
+				id : $("#id").val(),
+				userpassword : $("#password").val(),
+				email : $("#email").val()
+			}
+			$.ajax({
+				type:"PUT",
+				url : "/blog/api/user",
+				data:JSON.stringify(data), //javascript -> java, html body data
+				contentType:"application/json;charset=utf-8",
+				dataType:"json"  //request -> JSON
+			}).done(function(res){
+				alert("회원정보 수정이 완료되었습니다!");
+				//console.log(res);
+				location.href = "/blog";
+			}).fail(function(err){
+				alert(JSON.stringify(err));
+			});
+		}
+}
+index.init();
