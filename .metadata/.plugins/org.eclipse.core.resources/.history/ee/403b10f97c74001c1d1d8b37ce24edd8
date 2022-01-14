@@ -1,0 +1,58 @@
+package com.berry.blog.controller.api;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.berry.blog.dto.ResDTO;
+import com.berry.blog.model.Board;
+import com.berry.blog.model.Reply;
+import com.berry.blog.model.User;
+import com.berry.blog.service.BoardService;
+import com.berry.blog.service.UserService;
+
+@RestController
+public class BoardApiController {
+	
+	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@PostMapping("/api/board")
+	public ResDTO<Integer> save(@RequestBody Board board) {
+		System.out.println("BoardApiController 글작성");
+		boardService.글쓰기(board);
+		return new ResDTO<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@DeleteMapping("/api/board/{id}")
+	public ResDTO<Integer> deleteByID(@PathVariable int id) {
+		System.out.println("BoardApiController 글삭제");
+		boardService.삭제하기(id);
+		return new ResDTO<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@PutMapping("/api/board/{id}")
+	public ResDTO<Integer> update(@PathVariable int id, @RequestBody Board board) {
+		System.out.println("BoardApiController 글수정");
+		boardService.수정하기(id, board);
+		return new ResDTO<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@PostMapping("/api/board/{boardId}/reply")
+	public ResDTO<Integer> replySave(@PathVariable int boardId, @RequestBody Reply reply) {
+		System.out.println("BoardApiController 댓글작성");
+		
+
+		boardService.댓글쓰기(boardId, reply);
+		return new ResDTO<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+}
